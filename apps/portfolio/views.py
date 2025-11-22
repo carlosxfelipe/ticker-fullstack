@@ -4,4 +4,4 @@ from django.shortcuts import render
 
 
 def home(request):
-    return render(request, "portfolio.html")
+    return render(request, "portfolio/portfolio.html")
