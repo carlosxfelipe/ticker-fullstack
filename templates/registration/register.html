@@ -3,6 +3,7 @@
 {% block title %}Registrar{% endblock %}
 
 {% block content %}
+<div style="max-width: 768px; margin: 0 auto;">
   <h2>Cadastro</h2>
   <form method="post">
     {% csrf_token %}
@@ -13,4 +14,5 @@
     <button type="submit">Cadastrar</button>
   </form>
   <p>Já possui cadastro? <a href="{% url 'login' %}">Clique aqui para entrar</a></p>
+</div>
 {% endblock %}

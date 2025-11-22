@@ -12,11 +12,7 @@
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
   </head>
   <body>
-    <header>
-      <nav>
-        <a href="/">Portfolio</a>
-      </nav>
-    </header>
+    {% include "partials/header.html" %}
     <main>{% block content %}{% endblock %}</main>
   </body>
 </html>
