@@ -1,17 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 
 
 def home(request):
+    if not request.user.is_authenticated:
+        return redirect("login")
     user = request.user
-    assets = []
-    if user.is_authenticated:
-        assets = user.assets.all()
-        from django.shortcuts import redirect
-
-        if not request.user.is_authenticated:
-            return redirect("login")
+    assets = user.assets.all()
     labels = [asset.ticker for asset in assets]
     values = [asset.quantity for asset in assets]
     return render(
