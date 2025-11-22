@@ -1,0 +1,15 @@
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.header-actions a:not(:last-child),
+.header-user {
+  margin-right: 1rem;
+}
