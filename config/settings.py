@@ -105,6 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
 LANGUAGE_CODE = "pt-br"
+USE_L10N = True
 
 TIME_ZONE = "America/Sao_Paulo"
 

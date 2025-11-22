@@ -8,8 +8,15 @@
   <div style="max-width: 600px; margin: auto;">
     <canvas id="pieChart"></canvas>
   </div>
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
+    // Formatador de moeda brasileira
+    const formatBRL = new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    });
+
     const data = {
       labels: {{ labels|safe }},
       datasets: [{
@@ -19,9 +26,22 @@
         ],
       }]
     };
+
     new window.Chart(document.getElementById('pieChart'), {
       type: 'pie',
       data: data,
+      options: {
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                const value = context.raw;
+                return formatBRL.format(value);
+              }
+            }
+          }
+        }
+      }
     });
   </script>
 {% endblock %}
