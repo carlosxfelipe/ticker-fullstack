@@ -4,4 +4,21 @@
 
 {% block content %}
   <h1>Bem-vindo ao Portfolio!</h1>
+  <canvas id="pieChart" width="400" height="400"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const data = {
+      labels: {{ labels|safe }},
+      datasets: [{
+        data: {{ values|safe }},
+        backgroundColor: [
+          '#36A2EB', '#FF6384', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#C9CBCF'
+        ],
+      }]
+    };
+    new window.Chart(document.getElementById('pieChart'), {
+      type: 'pie',
+      data: data,
+    });
+  </script>
 {% endblock %}
