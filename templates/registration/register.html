@@ -3,11 +3,11 @@
 {% block title %}Registrar{% endblock %}
 
 {% block content %}
-  <h2>Registrar</h2>
+  <h2>Cadastro</h2>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Registrar</button>
+    <button type="submit">Cadastrar</button>
   </form>
-  <p>Já tem uma conta? <a href="{% url 'login' %}">Faça login aqui</a></p>
+  <p>Já possui cadastro? <a href="{% url 'login' %}">Clique aqui para entrar</a></p>
 {% endblock %}
