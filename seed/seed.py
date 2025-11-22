@@ -4,7 +4,11 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-user, _ = User.objects.get_or_create(username="carlos", defaults={"password": "123456"})
+user, _ = User.objects.get_or_create(
+    username="carlos@email.com",
+    email="carlos@email.com",
+    defaults={"password": "123456"},
+)
 
 assets = [
     Asset(
