@@ -4,6 +4,7 @@
 
 {% block content %}
   <h1>Bem-vindo ao Portfolio!</h1>
+  <p>Usuário logado: {{ request.user.username }}</p>
   <canvas id="pieChart" width="400" height="400"></canvas>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
