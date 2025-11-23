@@ -4,7 +4,9 @@
 
 {% block content %}
   <h1>Minha Carteira</h1>  
-  <a href="{% url 'manager:create' %}" class="btn" style="margin-bottom:2rem;">Adicionar Ativo</a>
+  <form action="{% url 'manager:create' %}" method="get" style="margin-bottom:2rem;">
+    <button type="submit" class="btn" style="width: 200px;">Adicionar Ativo</button>
+  </form>
 
   <table>
     <thead>
@@ -23,11 +25,48 @@
         <td>{{ asset.average_price }}</td>
         <td>
           <div style="display: flex; gap: 0.5rem;">
-            <a href="{% url 'manager:edit' asset.id %}" class="btn btn-sm">Editar</a>
-            <form action="{% url 'manager:delete' asset.id %}" method="post" style="margin: 0;">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-sm btn-danger">Remover</button>
+            <form action="{% url 'manager:edit' asset.id %}" method="get" style="margin: 0;">
+              <button type="submit" class="btn btn-sm">Editar</button>
             </form>
+            <form style="margin: 0;">
+              <button type="button" onclick="showDeleteModal({{ asset.id }})" class="btn btn-sm btn-danger">Remover</button>
+            </form>
+          <dialog id="deleteModal" style="max-width: 350px; width: auto;">
+            <article>
+              <header>
+                <button aria-label="Close" rel="prev" onclick="deleteModal.close()"></button>
+                <h3>Confirmar remoção</h3>
+              </header>
+              <p>Tem certeza que deseja remover este ativo?</p>
+              <form id="deleteForm" method="post" style="margin:0;">
+                {% csrf_token %}
+                <footer>
+                  <div style="display: flex; flex-direction: row; gap: 0.5rem;">
+                    <button type="button" role="button" onclick="deleteModal.close()" style="flex: 1 1 0;">Cancelar</button>
+                    <button type="submit" autofocus role="button" style="flex: 1 1 0;">Remover</button>
+                  </div>
+                </footer>
+              </form>
+            </article>
+          </dialog>
+          <script>
+            const deleteModal = document.getElementById('deleteModal');
+            function showDeleteModal(assetId) {
+              var form = document.getElementById('deleteForm');
+              form.action = '/manager/delete/' + assetId + '/';
+              deleteModal.showModal();
+            }
+            // Fecha ao clicar fora do modal
+            deleteModal.addEventListener('click', function(event) {
+              const rect = deleteModal.querySelector('article').getBoundingClientRect();
+              if (
+                event.target === deleteModal &&
+                (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom)
+              ) {
+                deleteModal.close();
+              }
+            });
+          </script>
           </div>
         </td>
       </tr>

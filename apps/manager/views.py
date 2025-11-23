@@ -41,5 +41,9 @@ def manager_edit(request, id):
 
 
 def manager_delete(request, id):
-    # Apenas redireciona para a home por enquanto
+    from apps.portfolio.models import Asset
+
+    asset = get_object_or_404(Asset, id=id, user=request.user)
+    if request.method == "POST":
+        asset.delete()
     return redirect("manager:home")
