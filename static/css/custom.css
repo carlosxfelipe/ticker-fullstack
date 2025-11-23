@@ -2,6 +2,11 @@
   --pico-font-size: 87.5%;
 }
 
+body,
+html {
+  font-family: "Ubuntu", Arial, sans-serif;
+}
+
 h1 {
   font-size: 1.75rem;
 }
