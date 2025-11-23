@@ -8,8 +8,8 @@
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Entrar</button>
+    <button type="submit"><i class="bi bi-box-arrow-in-right"></i> Entrar</button>
   </form>
-  <p>Não possui cadastro? <a href="{% url 'register' %}">Clique aqui para se registrar</a></p>
+  <p>Não possui cadastro? <a href="{% url 'register' %}"><i class="bi bi-person-plus"></i> Clique aqui para se registrar</a></p>
 </div>
 {% endblock %}
