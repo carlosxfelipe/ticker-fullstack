@@ -4,7 +4,7 @@
 
 {% block content %}
   <h1>Minha Carteira</h1>  
-  <a href="{% url 'wallet:create' %}" class="btn" style="margin-bottom:2rem;">Adicionar Ativo</a>
+  <a href="{% url 'manager:create' %}" class="btn" style="margin-bottom:2rem;">Adicionar Ativo</a>
 
   <table>
     <thead>
@@ -23,8 +23,8 @@
         <td>{{ asset.average_price }}</td>
         <td>
           <div style="display: flex; gap: 0.5rem;">
-            <a href="{% url 'wallet:edit' asset.id %}" class="btn btn-sm">Editar</a>
-            <form action="{% url 'wallet:delete' asset.id %}" method="post" style="margin: 0;">
+            <a href="{% url 'manager:edit' asset.id %}" class="btn btn-sm">Editar</a>
+            <form action="{% url 'manager:delete' asset.id %}" method="post" style="margin: 0;">
               {% csrf_token %}
               <button type="submit" class="btn btn-sm btn-danger">Remover</button>
             </form>

@@ -26,5 +26,5 @@ urlpatterns = [
     path("accounts/logout/", LogoutGetView.as_view(), name="logout"),
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/register/", register, name="register"),
-    path("wallet/", include("apps.wallet.urls")),
+    path("manager/", include("apps.manager.urls")),
 ]
