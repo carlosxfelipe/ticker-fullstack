@@ -14,6 +14,7 @@
         <th>Ticker</th>
         <th>Quantidade</th>
         <th>Preço Médio</th>
+        <th>Preço Atual</th>
         <th>Ações</th>
       </tr>
     </thead>
@@ -23,6 +24,7 @@
         <td>{{ asset.ticker }}</td>
         <td>{{ asset.quantity }}</td>
         <td>{{ asset.average_price }}</td>
+        <td>{{ asset.current_price }}</td>
         <td>
           <div style="display: flex; gap: 0.5rem;">
             <form action="{% url 'manager:edit' asset.id %}" method="get" style="margin: 0;">

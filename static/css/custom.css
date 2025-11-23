@@ -25,3 +25,11 @@ h5 {
 h6 {
   font-size: 0.9rem;
 }
+
+a {
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  text-decoration: none;
+}

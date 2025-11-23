@@ -35,6 +35,7 @@ def manager_edit(request, id):
         asset.ticker = request.POST.get("ticker")
         asset.quantity = request.POST.get("quantity")
         asset.average_price = request.POST.get("average_price")
+        asset.current_price = request.POST.get("current_price")
         asset.save()
         return redirect("manager:home")
     return render(request, "manager/edit.html", {"asset": asset})
