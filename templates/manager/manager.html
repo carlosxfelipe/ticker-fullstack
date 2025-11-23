@@ -43,7 +43,7 @@
           <p>
             <strong>Variação:</strong>
             {% if asset.percent_change is not None %}
-              <span style="color: {% if asset.percent_change > 0 %}var(--warning){% elif asset.percent_change < 0 %}var(--danger){% else %}inherit{% endif %};">
+              <span class="{% if asset.percent_change > 0 %}tag-success{% elif asset.percent_change < 0 %}tag-danger{% endif %}">
                 {{ asset.percent_change|floatformat:2 }}%
               </span>
             {% else %}
