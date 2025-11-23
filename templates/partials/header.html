@@ -4,7 +4,10 @@
     <div class="header-actions">
       {% if user.is_authenticated %}
         <span class="header-user">Olá, {{ user.username|default:user.email }}</span>
-        <a href="{% url 'logout' %}">Sair</a>
+          <form action="{% url 'logout' %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit">Sair</button>
+          </form>
       {% else %}
         <a href="{% url 'login' %}">Entrar</a>
         <a href="{% url 'register' %}">Registrar</a>

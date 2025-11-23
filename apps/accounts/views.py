@@ -1,7 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login
+from django.contrib.auth.views import LogoutView
 from .forms import RegisterForm
+
+
+class LogoutGetView(LogoutView):
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
 
 
 def register(request):

@@ -13,3 +13,12 @@
 .header-user {
   margin-right: 1rem;
 }
+
+nav.header-nav a {
+  text-decoration: none;
+}
+
+nav.header-nav a:hover,
+nav.header-nav a:focus {
+  text-decoration: none;
+}
