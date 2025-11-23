@@ -1,16 +1,31 @@
 <header>
   <nav class="header-nav">
-    <a href="/">Ticker Portfolio</a>
+    <a href="/">
+      <i class="bi bi-house-door"></i> Ticker Portfolio
+    </a>
+
     <div class="header-actions">
       {% if user.is_authenticated %}
-        <span class="header-user">Olá, {{ user.username|default:user.email }}</span>
-          <form action="{% url 'logout' %}" method="post" class="logout-inline-form">
-            {% csrf_token %}
-              <button type="submit" class="logout-btn">Sair</button>
-          </form>
+        <span class="header-user">
+          <i class="bi bi-person-circle"></i>
+          Olá, {{ user.username|default:user.email }}
+        </span>
+
+        <form action="{% url 'logout' %}" method="post" class="logout-inline-form">
+          {% csrf_token %}
+          <button type="submit" class="logout-btn">
+            <i class="bi bi-box-arrow-right"></i> Sair
+          </button>
+        </form>
+
       {% else %}
-        <a href="{% url 'login' %}">Entrar</a>
-        <a href="{% url 'register' %}">Registrar</a>
+        <a href="{% url 'login' %}">
+          <i class="bi bi-box-arrow-in-right"></i> Entrar
+        </a>
+
+        <a href="{% url 'register' %}">
+          <i class="bi bi-person-plus"></i> Registrar
+        </a>
       {% endif %}
     </div>
   </nav>
