@@ -3,10 +3,10 @@
 {% block title %}Minha Carteira{% endblock %}
 
 {% block content %}
-  <h1>Minha Carteira</h1>  
-  <form action="{% url 'manager:create' %}" method="get" style="margin-bottom:2rem;">
-    <button type="submit" class="btn" style="width: 200px;">Adicionar Ativo</button>
-  </form>
+  <h1>Minha Carteira</h1>
+  <div style="margin-bottom: 2rem;">
+    <a href="{% url 'manager:create' %}">Adicionar Ativo</a>
+  </div>
 
   <table>
     <thead>
@@ -28,10 +28,10 @@
         <td>
           <div style="display: flex; gap: 0.5rem;">
             <form action="{% url 'manager:edit' asset.id %}" method="get" style="margin: 0;">
-              <button type="submit" class="btn btn-sm">Editar</button>
+              <button type="submit" class="warning">Editar</button>
             </form>
             <form style="margin: 0;">
-              <button type="button" onclick="showDeleteModal({{ asset.id }})" class="btn btn-sm btn-danger">Remover</button>
+              <button type="button" onclick="showDeleteModal({{ asset.id }})" class="danger">Remover</button>
             </form>
           <dialog id="deleteModal" style="max-width: 350px; width: auto;">
             <article>
@@ -44,8 +44,8 @@
                 {% csrf_token %}
                 <footer>
                   <div style="display: flex; flex-direction: row; gap: 0.5rem;">
-                    <button type="button" role="button" onclick="deleteModal.close()" style="flex: 1 1 0;">Cancelar</button>
-                    <button type="submit" autofocus role="button" style="flex: 1 1 0;">Remover</button>
+                    <button type="button" role="button" onclick="deleteModal.close()" class="warning" style="flex: 1 1 0;">Cancelar</button>
+                    <button type="submit" autofocus role="button" class="danger" style="flex: 1 1 0;">Remover</button>
                   </div>
                 </footer>
               </form>

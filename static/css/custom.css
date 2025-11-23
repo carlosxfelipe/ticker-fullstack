@@ -1,5 +1,33 @@
 :root {
   --pico-font-size: 87.5%;
+
+  --btn-warning-bg: #ffbf00;
+  --btn-warning-border: #ffbf00;
+  --btn-warning-text: #000;
+
+  --btn-danger-bg: #c52f21;
+  --btn-danger-border: #c52f21;
+  --btn-danger-text: #ffffff;
+
+  --btn-success-bg: #007a50;
+  --btn-success-border: #007a50;
+  --btn-success-text: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --btn-warning-bg: #ffbf00;
+    --btn-warning-border: #fecc63;
+    --btn-warning-text: #000;
+
+    --btn-danger-bg: #d93526;
+    --btn-danger-border: #d93526;
+    --btn-danger-text: #ffffff;
+
+    --btn-success-bg: #007a50;
+    --btn-success-border: #00b478;
+    --btn-success-text: #ffffff;
+  }
 }
 
 body,
@@ -32,4 +60,37 @@ a {
 a:hover,
 a:focus {
   text-decoration: none;
+}
+
+button.warning,
+[role="button"].warning {
+  background: var(--btn-warning-bg);
+  border: 1px solid var(--btn-warning-border);
+  color: var(--btn-warning-text);
+}
+button.warning:hover,
+[role="button"].warning:hover {
+  filter: brightness(1.1);
+}
+
+button.danger,
+[role="button"].danger {
+  background: var(--btn-danger-bg);
+  border: 1px solid var(--btn-danger-border);
+  color: var(--btn-danger-text);
+}
+button.danger:hover,
+[role="button"].danger:hover {
+  filter: brightness(1.1);
+}
+
+button.success,
+[role="button"].success {
+  background: var(--btn-success-bg);
+  border: 1px solid var(--btn-success-border);
+  color: var(--btn-success-text);
+}
+button.success:hover,
+[role="button"].success:hover {
+  filter: brightness(1.1);
 }
