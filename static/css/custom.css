@@ -30,12 +30,12 @@
 
   --card-bg: var(--color-card-light);
 
-  /* .text-success {
+  .text-success {
     color: var(--color-success) !important;
   }
   .text-danger {
     color: var(--color-danger) !important;
-  } */
+  }
 
   .tag-success {
     background: var(--color-success);
@@ -71,12 +71,12 @@
 
     --card-bg: var(--color-card-dark);
 
-    /* .text-success {
+    .text-success {
       color: var(--color-success-light) !important;
     }
     .text-danger {
       color: var(--color-danger-dark) !important;
-    } */
+    }
 
     .tag-success {
       background: var(--color-success-light);
