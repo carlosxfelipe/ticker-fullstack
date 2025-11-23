@@ -14,7 +14,7 @@
         width: 340px;
         min-width: 280px;
         max-width: 340px;
-        height: 260px;
+        height: 340px;
         border-radius: 8px;
         padding: 1rem;
         box-shadow: 0 2px 8px rgba(0,0,0,0.04);
@@ -23,11 +23,33 @@
         flex-direction: column;
         justify-content: space-between;
       ">
-        <div>
+        <div style="line-height: 1.2; margin-bottom: 0.2rem;">
           <h3 style="margin-top: 0; margin-bottom: 0.5rem;">{{ asset.ticker }}</h3>
           <p><strong>Quantidade:</strong> {{ asset.quantity }}</p>
           <p><strong>Preço Médio:</strong> {{ asset.average_price }}</p>
+          <p><strong>Total Investido:</strong> {% if asset.total_invested is not None %}R$ {{ asset.total_invested|floatformat:2 }}{% else %}-{% endif %}</p>
           <p><strong>Preço Atual:</strong> {{ asset.current_price }}</p>
+          <p><strong>Valor atual:</strong> {% if asset.current_value is not None %}R$ {{ asset.current_value|floatformat:2 }}{% else %}-{% endif %}</p>
+          <p>
+            <strong>Resultado:</strong>
+            {% if asset.result is not None %}
+              <span style="color: {% if asset.result > 0 %}var(--warning){% elif asset.result < 0 %}var(--danger){% else %}inherit{% endif %};">
+                R$ {{ asset.result|floatformat:2 }}
+              </span>
+            {% else %}
+              <span style="color: inherit;">-</span>
+            {% endif %}
+          </p>
+          <p>
+            <strong>Variação:</strong>
+            {% if asset.percent_change is not None %}
+              <span style="color: {% if asset.percent_change > 0 %}var(--warning){% elif asset.percent_change < 0 %}var(--danger){% else %}inherit{% endif %};">
+                {{ asset.percent_change|floatformat:2 }}%
+              </span>
+            {% else %}
+              <span style="color: inherit;">-</span>
+            {% endif %}
+          </p>
         </div>
         <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
           <form action="{% url 'manager:edit' asset.id %}" method="get" style="margin: 0;">
