@@ -4,31 +4,10 @@
     <div class="header-actions">
       {% if user.is_authenticated %}
         <span class="header-user">Olá, {{ user.username|default:user.email }}</span>
-
-        <form action="{% url 'logout' %}" method="post" style="display: inline;">
-          {% csrf_token %}
-          <button
-            type="submit"
-            style="
-              all: unset;
-              cursor: pointer;
-              padding: 4px 8px;
-              background: transparent;
-              border: none;
-              color: var(--pico-primary);
-              font-size: 14px;
-              line-height: 1;
-              display: inline-block;
-              text-decoration: none;
-              transition: color .2s;
-            "
-            onmouseover="this.style.color='var(--pico-primary-hover)'"
-            onmouseout="this.style.color='var(--pico-primary)'"
-          >
-            Sair
-          </button>
-        </form>
-
+          <form action="{% url 'logout' %}" method="post" class="logout-inline-form">
+            {% csrf_token %}
+              <button type="submit" class="btn-link logout-btn">Sair</button>
+          </form>
       {% else %}
         <a href="{% url 'login' %}">Entrar</a>
         <a href="{% url 'register' %}">Registrar</a>

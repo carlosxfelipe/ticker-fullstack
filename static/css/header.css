@@ -1,3 +1,27 @@
+/* Custom styles for logout button in header */
+.logout-btn {
+  all: unset;
+  cursor: pointer;
+  padding: 4px 8px;
+  background: transparent;
+  border: none;
+  color: var(--pico-primary);
+  font-size: 14px;
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.logout-btn:hover {
+  color: var(--pico-primary-hover);
+}
+
+/* Ensure logout form is inline in header */
+.logout-inline-form {
+  display: inline;
+}
+
 .header-nav {
   display: flex;
   align-items: center;
