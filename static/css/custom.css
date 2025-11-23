@@ -1,36 +1,51 @@
 :root {
   --pico-font-size: 87.5%;
 
-  --btn-warning-bg: #ffbf00;
-  --btn-warning-border: #ffbf00;
-  --btn-warning-text: #000;
+  --color-warning: #ffbf00;
+  --color-warning-light: #fecc63;
 
-  --btn-danger-bg: #c52f21;
-  --btn-danger-border: #c52f21;
-  --btn-danger-text: #ffffff;
+  --color-danger: #c52f21;
+  --color-danger-dark: #d93526;
 
-  --btn-success-bg: #007a50;
-  --btn-success-border: #007a50;
-  --btn-success-text: #ffffff;
+  --color-success: #007a50;
+  --color-success-light: #00b478;
 
-  --card-bg: #f8f8f8;
+  --color-black: #000000;
+  --color-white: #ffffff;
+
+  --color-card-light: #f8f8f8;
+  --color-card-dark: #0d1b2a;
+
+  --btn-warning-bg: var(--color-warning);
+  --btn-warning-border: var(--color-warning);
+  --btn-warning-text: var(--color-black);
+
+  --btn-danger-bg: var(--color-danger);
+  --btn-danger-border: var(--color-danger);
+  --btn-danger-text: var(--color-white);
+
+  --btn-success-bg: var(--color-success);
+  --btn-success-border: var(--color-success);
+  --btn-success-text: var(--color-white);
+
+  --card-bg: var(--color-card-light);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --btn-warning-bg: #ffbf00;
-    --btn-warning-border: #fecc63;
-    --btn-warning-text: #000;
+    --btn-warning-bg: var(--color-warning);
+    --btn-warning-border: var(--color-warning-light);
+    --btn-warning-text: var(--color-black);
 
-    --btn-danger-bg: #d93526;
-    --btn-danger-border: #d93526;
-    --btn-danger-text: #ffffff;
+    --btn-danger-bg: var(--color-danger-dark);
+    --btn-danger-border: var(--color-danger-dark);
+    --btn-danger-text: var(--color-white);
 
-    --btn-success-bg: #007a50;
-    --btn-success-border: #00b478;
-    --btn-success-text: #ffffff;
+    --btn-success-bg: var(--color-success);
+    --btn-success-border: var(--color-success-light);
+    --btn-success-text: var(--color-white);
 
-    --card-bg: #0d1b2a;
+    --card-bg: var(--color-card-dark);
   }
 }
 
