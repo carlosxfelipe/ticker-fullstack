@@ -4,20 +4,7 @@
 
 {% block content %}
   <h1>Minha Carteira</h1>  
-  <form method="post" style="margin-bottom:2rem;">
-    {% csrf_token %}
-    <input type="hidden" name="id" value="{{ ativo_edit.id|default:'' }}">
-    <label for="ticker">Ticker</label>
-    <input type="text" id="ticker" name="ticker" value="{{ ativo_edit.ticker|default:'' }}" required>
-    <label for="quantity">Quantidade</label>
-    <input type="number" id="quantity" name="quantity" value="{{ ativo_edit.quantity|default:'' }}" required>
-    <label for="average_price">Preço Médio</label>
-    <input type="number" step="0.01" id="average_price" name="average_price" value="{{ ativo_edit.average_price|default:'' }}" required>
-    <button type="submit" class="btn">{% if ativo_edit %}Salvar{% else %}Adicionar{% endif %}</button>
-    {% if ativo_edit %}
-      <a href="{% url 'wallet:home' %}" class="btn btn-secondary">Cancelar</a>
-    {% endif %}
-  </form>
+  <a href="{% url 'wallet:create' %}" class="btn" style="margin-bottom:2rem;">Adicionar Ativo</a>
 
   <table>
     <thead>
@@ -29,17 +16,15 @@
       </tr>
     </thead>
     <tbody>
-      {% for ativo in ativos %}
+      {% for asset in assets %}
       <tr>
-        <td>{{ ativo.ticker }}</td>
-        <td>{{ ativo.quantity }}</td>
-        <td>{{ ativo.average_price }}</td>
+        <td>{{ asset.ticker }}</td>
+        <td>{{ asset.quantity }}</td>
+        <td>{{ asset.average_price }}</td>
         <td>
           <div style="display: flex; gap: 0.5rem;">
-            <form action="?edit={{ ativo.id }}" method="get" style="margin: 0;">
-              <button type="submit" class="btn btn-sm">Editar</button>
-            </form>
-            <form action="?delete={{ ativo.id }}" method="post" style="margin: 0;">
+            <a href="{% url 'wallet:edit' asset.id %}" class="btn btn-sm">Editar</a>
+            <form action="{% url 'wallet:delete' asset.id %}" method="post" style="margin: 0;">
               {% csrf_token %}
               <button type="submit" class="btn btn-sm btn-danger">Remover</button>
             </form>

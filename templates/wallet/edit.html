@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Ativo{% endblock %}
+
+{% block content %}
+  <h1>Editar Ativo</h1>
+  <form method="post">
+    {% csrf_token %}
+    <label for="ticker">Ticker</label>
+    <input type="text" id="ticker" name="ticker" value="{{ asset.ticker }}" required>
+    <label for="quantity">Quantidade</label>
+    <input type="number" id="quantity" name="quantity" value="{{ asset.quantity }}" required>
+    <label for="average_price">Preço Médio</label>
+    <input type="number" id="average_price" name="average_price" value="{{ asset.average_price|default_if_none:'0.00' }}" required>
+    <button type="submit" class="btn">Salvar</button>
+    <a href="{% url 'wallet:home' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+{% endblock %}
