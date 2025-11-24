@@ -40,7 +40,7 @@ const formatBRL = new Intl.NumberFormat("pt-BR", {
   currency: "BRL",
 });
 
-function initPortfolioChart(labels, values) {
+function initPortfolioChart(labels, values, type, canvasId) {
   const data = {
     labels: labels,
     datasets: [
@@ -53,46 +53,36 @@ function initPortfolioChart(labels, values) {
     ],
   };
 
-  let chartInstance;
-  function renderChart(type) {
-    if (chartInstance) chartInstance.destroy();
-    chartInstance = new window.Chart(document.getElementById("pieChart"), {
-      type: type,
-      data: data,
-      options: {
-        plugins: {
-          legend: {
-            display: type !== "bar",
-          },
-          tooltip: {
-            callbacks: {
-              label: function (context) {
-                const value = context.raw;
-                const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                const percent = total ? ((value / total) * 100).toFixed(2) : 0;
-                return formatBRL.format(value) + " (" + percent + "%)";
-              },
-            },
-          },
-          datalabels: {
-            color: "#fff",
-            formatter: function (value, context) {
-              return context.chart.data.labels[context.dataIndex];
-            },
-            font: {
-              weight: "bold",
-              size: 14,
+  new window.Chart(document.getElementById(canvasId), {
+    type: type,
+    data: data,
+    options: {
+      plugins: {
+        legend: {
+          display: type !== "bar",
+        },
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              const value = context.raw;
+              const total = context.dataset.data.reduce((a, b) => a + b, 0);
+              const percent = total ? ((value / total) * 100).toFixed(2) : 0;
+              return formatBRL.format(value) + " (" + percent + "%)";
             },
           },
         },
+        datalabels: {
+          color: "#fff",
+          formatter: function (value, context) {
+            return context.chart.data.labels[context.dataIndex];
+          },
+          font: {
+            weight: "bold",
+            size: 14,
+          },
+        },
       },
-      plugins: [window.ChartDataLabels],
-    });
-  }
-
-  document.getElementById("chartType").addEventListener("change", function (e) {
-    renderChart(e.target.value);
+    },
+    plugins: [window.ChartDataLabels],
   });
-
-  renderChart("doughnut");
 }

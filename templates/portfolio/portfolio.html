@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% now "U" as cache_bust %}
 
 {% block title %}Portfolio{% endblock %}
 
@@ -9,23 +10,25 @@
     <a href="/manager">Ir para Gerenciador de Ativos</a>
   </div>
   <div style="max-width: 600px; margin: auto;">
-    <label for="chartType" style="display:block; margin-bottom:0.5rem;">Tipo de gráfico:</label>
-    <select id="chartType" style="margin-bottom:1rem;">
-      <option value="doughnut" selected>Rosquinha</option>
-      <option value="pie">Pizza</option>
-      <option value="bar">Barra</option>
-    </select>
-    <canvas id="pieChart"></canvas>
+    <h3 style="text-align:center;">Gráfico Rosquinha</h3>
+    <canvas id="doughnutChart"></canvas>
+    <h3 style="text-align:center; margin-top:2rem;">Gráfico Barra</h3>
+    <canvas id="barChart"></canvas>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-  <script src="{% static 'js/portfolio.js' %}"></script>
+  <script src="{% static 'js/portfolio.js' %}?v={{ cache_bust }}"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const labels = {{ labels|safe }};
       const values = {{ values|safe }};
-      initPortfolioChart(labels, values);
+      if (typeof initPortfolioChart === 'function') {
+        // Rosquinha
+        initPortfolioChart(labels, values, 'doughnut', 'doughnutChart');
+        // Barra
+        initPortfolioChart(labels, values, 'bar', 'barChart');
+      }
     });
   </script>
 {% endblock %}
