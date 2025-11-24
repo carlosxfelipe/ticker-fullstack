@@ -8,10 +8,17 @@
     <a href="/manager">Ir para Gerenciador de Ativos</a>
   </div>
   <div style="max-width: 600px; margin: auto;">
+    <label for="chartType" style="display:block; margin-bottom:0.5rem;">Tipo de gráfico:</label>
+    <select id="chartType" style="margin-bottom:1rem;">
+      <option value="doughnut" selected>Rosquinha</option>
+      <option value="pie">Pizza</option>
+      <option value="bar">Barra</option>
+    </select>
     <canvas id="pieChart"></canvas>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
   <script>
     // Formatador de moeda brasileira
     const formatBRL = new Intl.NumberFormat('pt-BR', {
@@ -22,6 +29,7 @@
     const data = {
       labels: {{ labels|safe }},
       datasets: [{
+        label: "barra",
         data: {{ values|safe }},
         backgroundColor: [
           '#36A2EB',
@@ -58,21 +66,45 @@
       }]
     };
 
-    new window.Chart(document.getElementById('pieChart'), {
-      type: 'pie',
-      data: data,
-      options: {
-        plugins: {
-          tooltip: {
-            callbacks: {
-              label: function(context) {
-                const value = context.raw;
-                return formatBRL.format(value);
+    let chartInstance;
+    function renderChart(type) {
+      if (chartInstance) chartInstance.destroy();
+      chartInstance = new window.Chart(document.getElementById('pieChart'), {
+        type: type,
+        data: data,
+        options: {
+          plugins: {
+            legend: {
+              display: type !== 'bar',
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  const value = context.raw;
+                  return formatBRL.format(value);
+                }
+              }
+            },
+            datalabels: {
+              color: '#fff',
+              formatter: function(value, context) {
+                return context.chart.data.labels[context.dataIndex];
+              },
+              font: {
+                weight: 'bold',
+                size: 14
               }
             }
           }
-        }
-      }
+        },
+        plugins: [window.ChartDataLabels]
+      });
+    }
+
+    document.getElementById('chartType').addEventListener('change', function(e) {
+      renderChart(e.target.value);
     });
+
+    renderChart('doughnut');
   </script>
 {% endblock %}
