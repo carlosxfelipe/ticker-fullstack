@@ -1,18 +1,24 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Registrar{% endblock %}
 
 {% block content %}
-<div style="max-width: 768px; margin: 0 auto;">
-  <h2>Cadastro</h2>
-  <form method="post">
-    {% csrf_token %}
-    <label for="id_email">E-mail:</label>
-    {{ form.email }}
-    <label for="id_password">Senha:</label>
-    {{ form.password }}
-    <button type="submit"><i class="bi bi-person-plus"></i> Cadastrar</button>
-  </form>
-  <p>Já possui cadastro? <a href="{% url 'login' %}"><i class="bi bi-box-arrow-in-right"></i> Clique aqui para entrar</a></p>
+<div style="max-width: 900px; margin: 100px auto 0 auto; display: flex; align-items: stretch; gap: 0;">
+  <div style="flex: 1; background: var(--card-bg, #fff); border: 1px solid #e0e0e0; border-radius: 1.2rem 0 0 1.2rem; box-shadow: 0 2px 16px rgba(0,0,0,0.08); padding: 2.5rem 2rem; display: flex; flex-direction: column; justify-content: center;">
+    <h2 style="margin-bottom: 2rem;">Cadastro</h2>
+    <form method="post" style="display: flex; flex-direction: column; gap: 1.2rem;">
+      {% csrf_token %}
+      <label for="id_email">E-mail:</label>
+      {{ form.email }}
+      <label for="id_password">Senha:</label>
+      {{ form.password }}
+      <button type="submit" style="margin-top: 1rem;"><i class="bi bi-person-plus"></i> Cadastrar</button>
+    </form>
+    <p style="margin-top: 2rem;">Já possui cadastro? <a href="{% url 'login' %}"><i class="bi bi-box-arrow-in-right"></i> Clique aqui para entrar</a></p>
+  </div>
+  <div style="flex: 1; display: flex; align-items: stretch; justify-content: center; background: var(--card-bg, #fff); border: 1px solid #e0e0e0; border-radius: 0 1.2rem 1.2rem 0; box-shadow: 0 2px 16px rgba(0,0,0,0.08); border-left: none;">
+    <img src="{% static 'img/pexels-energepic-com-27411-159888.jpg' %}" alt="Login" style="width: 100%; height: 100%; object-fit: cover; border-radius: 0 1.2rem 1.2rem 0;">
+  </div>
 </div>
 {% endblock %}
