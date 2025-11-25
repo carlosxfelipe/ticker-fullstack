@@ -16,11 +16,14 @@ def register(request):
         if form.is_valid():
             email = form.cleaned_data["email"]
             password = form.cleaned_data["password"]
-            user = User.objects.create_user(
-                username=email, email=email, password=password
-            )
-            login(request, user)
-            return redirect("home")
+            if User.objects.filter(username=email).exists():
+                form.add_error("email", "Este e-mail já está cadastrado.")
+            else:
+                user = User.objects.create_user(
+                    username=email, email=email, password=password
+                )
+                login(request, user)
+                return redirect("home")
     else:
         form = RegisterForm()
     return render(request, "registration/register.html", {"form": form})

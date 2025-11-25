@@ -12,8 +12,19 @@
       {% csrf_token %}
       <label for="id_email">E-mail:</label>
       {{ form.email }}
+      {% if form.email.errors %}
+        <div class="form-error">{{ form.email.errors.0 }}</div>
+      {% endif %}
       <label for="id_password">Senha:</label>
       {{ form.password }}
+      {% if form.password.errors %}
+        <div class="form-error">{{ form.password.errors.0 }}</div>
+      {% endif %}
+      <label for="id_password2">Confirme a senha:</label>
+      {{ form.password2 }}
+      {% if form.password2.errors %}
+        <div class="form-error">{{ form.password2.errors.0 }}</div>
+      {% endif %}
       <button type="submit"><i class="bi bi-person-plus"></i> Cadastrar</button>
     </form>
     <p>Já possui cadastro? <a href="{% url 'login' %}"><i class="bi bi-box-arrow-in-right"></i> Clique aqui para entrar</a></p>
