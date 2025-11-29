@@ -68,3 +68,32 @@
   object-fit: cover;
   border-radius: 0 1.2rem 1.2rem 0;
 }
+
+@media (max-width: 600px) {
+  .auth-card {
+    flex-direction: column;
+    max-width: 98vw;
+    margin: 20px auto;
+    box-shadow: none;
+  }
+  .auth-card-form {
+    border-radius: 1.2rem 1.2rem 0 0;
+    padding: 1.5rem 1rem;
+    box-shadow: none;
+  }
+  .auth-card-img {
+    border-radius: 0 0 1.2rem 1.2rem;
+    border-left: 1px solid var(--card-border);
+    border-top: none;
+    min-height: 180px;
+    max-height: 220px;
+    box-shadow: none;
+  }
+  .auth-card-img img {
+    border-radius: 0 0 1.2rem 1.2rem;
+    width: 100%;
+    height: 100%;
+    max-height: 220px;
+    object-fit: cover;
+  }
+}
