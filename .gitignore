@@ -11,3 +11,22 @@ wheels/
 
 # macOS files
 .DS_Store
+
+staticfiles/
+media/
+*.log
+
+# *.sqlite3
+# db.sqlite3
+
+.env
+.env.*
+
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+pip-wheel-metadata/
+django_cache/

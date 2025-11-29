@@ -1,10 +1,20 @@
+import os
 import subprocess
 import sys
 
-print("Iniciando servidor ASGI com Uvicorn...")
-result = subprocess.run(
-    ["uvicorn", "config.asgi:application", "--host", "0.0.0.0", "--port", "8000"]
-)
-if result.returncode != 0:
-    print("Erro ao iniciar o servidor.")
-    sys.exit(result.returncode)
+port = os.environ.get("PORT", "8000")
+
+cmd = [
+    "uv",
+    "run",
+    "gunicorn",
+    "config.asgi:application",
+    "-k",
+    "uvicorn.workers.UvicornWorker",
+    "--bind",
+    f"0.0.0.0:{port}",
+]
+
+r = subprocess.run(cmd)
+if r.returncode != 0:
+    sys.exit(r.returncode)
