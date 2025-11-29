@@ -3,7 +3,7 @@ import sys
 
 # Instala dependências
 print("Instalando dependências com uv...")
-result = subprocess.run(["uv", "pip", "install"])
+result = subprocess.run(["uv", "pip", "install", "."])
 if result.returncode != 0:
     print("Erro ao instalar dependências.")
     sys.exit(result.returncode)
