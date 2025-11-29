@@ -10,7 +10,7 @@ if result.returncode != 0:
 
 # Executa migrações
 print("Executando migrações do banco de dados...")
-result = subprocess.run(["python", "manage.py", "migrate"])
+result = subprocess.run(["uv", "run", "python", "manage.py", "migrate"])
 if result.returncode != 0:
     print("Erro ao executar migrações.")
     sys.exit(result.returncode)
