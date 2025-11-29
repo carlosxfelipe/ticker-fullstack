@@ -14,19 +14,49 @@ if created:
 
 assets = [
     Asset(
-        user=user, ticker="PETR4", quantity=10, average_price=28.5, current_price=30.1
+        user=user,
+        ticker="PETR4",
+        quantity=100,
+        average_price=31.24,
+        current_price=31.79,
     ),
     Asset(
-        user=user, ticker="VALE3", quantity=5, average_price=65.0, current_price=67.2
+        user=user, ticker="VALE3", quantity=50, average_price=53.45, current_price=67.40
     ),
     Asset(
-        user=user, ticker="ITUB4", quantity=20, average_price=25.0, current_price=26.3
+        user=user,
+        ticker="ITUB4",
+        quantity=200,
+        average_price=37.49,
+        current_price=41.64,
     ),
     Asset(
-        user=user, ticker="BBDC4", quantity=15, average_price=23.5, current_price=24.0
+        user=user,
+        ticker="BBDC4",
+        quantity=150,
+        average_price=16.08,
+        current_price=19.65,
     ),
     Asset(
-        user=user, ticker="ABEV3", quantity=30, average_price=14.2, current_price=15.0
+        user=user,
+        ticker="COCA34",
+        quantity=120,
+        average_price=67.29,
+        current_price=64.77,
+    ),
+    Asset(
+        user=user,
+        ticker="AFHI11",
+        quantity=80,
+        average_price=92.40,
+        current_price=94.67,
+    ),
+    Asset(
+        user=user,
+        ticker="SNAG11",
+        quantity=600,
+        average_price=09.67,
+        current_price=10.17,
     ),
 ]
 
