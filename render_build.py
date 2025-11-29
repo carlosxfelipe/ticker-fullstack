@@ -15,4 +15,14 @@ if result.returncode != 0:
     print("Erro ao executar migrações.")
     sys.exit(result.returncode)
 
+
+# Coleta arquivos estáticos para produção
+print("Coletando arquivos estáticos...")
+result = subprocess.run(
+    ["uv", "run", "python", "manage.py", "collectstatic", "--noinput"]
+)
+if result.returncode != 0:
+    print("Erro ao coletar arquivos estáticos.")
+    sys.exit(result.returncode)
+
 print("Build concluído com sucesso!")
