@@ -4,6 +4,8 @@ import sys
 
 port = os.environ.get("PORT", "8000")
 
+
+# Inicia o servidor ASGI com Gunicorn/Uvicorn
 cmd = [
     "uv",
     "run",

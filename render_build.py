@@ -8,6 +8,24 @@ def run(cmd):
         sys.exit(r.returncode)
 
 
+# Instala dependências do projeto
 run(["uv", "run", "python", "-m", "pip", "install", "."])
+
+# Realiza as migrações do banco de dados
 run(["uv", "run", "python", "manage.py", "migrate"])
+
+# (Opcional) Popula o banco com dados iniciais
+run(
+    [
+        "uv",
+        "run",
+        "python",
+        "manage.py",
+        "shell",
+        "-c",
+        "exec(open('seed/seed.py').read())",
+    ]
+)
+
+# Coleta arquivos estáticos
 run(["uv", "run", "python", "manage.py", "collectstatic", "--noinput"])
