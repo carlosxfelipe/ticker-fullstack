@@ -3,6 +3,15 @@
 
 Este projeto é uma aplicação Django para gerenciar uma carteira de ativos de renda variável, exibindo os dados em um gráfico de pizza.
 
+## Ajuste o modo de debug
+
+Antes de rodar localmente, edite o arquivo `config/settings.py` e altere:
+
+```python
+DEBUG = True
+```
+
+Isso garante que o Django rode em modo de desenvolvimento.
 
 ## Rodando localmente com SQLite
 

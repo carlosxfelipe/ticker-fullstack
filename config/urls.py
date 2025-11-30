@@ -1,3 +1,7 @@
+from config.views import custom_404
+
+# Handler para página 404
+handler404 = "config.views.custom_404"
 """
 URL configuration for config project.
 
