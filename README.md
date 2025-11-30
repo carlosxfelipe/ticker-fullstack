@@ -3,6 +3,28 @@
 
 Este projeto é uma aplicação Django para gerenciar uma carteira de ativos de renda variável, exibindo os dados em um gráfico de pizza.
 
+
+## Rodando localmente com SQLite
+
+Se quiser rodar o projeto localmente usando SQLite, edite o arquivo `config/settings.py` e:
+
+1. Descomente o bloco do banco SQLite:
+	```python
+	DATABASES = {
+		"default": {
+			"ENGINE": "django.db.backends.sqlite3",
+			"NAME": BASE_DIR / "db.sqlite3",
+		}
+	}
+	```
+
+2. Comente o bloco do banco PostgreSQL:
+	```python
+	# DATABASES = {"default": dj_database_url.config(default=os.getenv("DATABASE_URL"))}
+	```
+
+Depois, siga os passos abaixo normalmente.
+
 ## Como rodar o projeto
 
 1. Realize as migrações do banco de dados:
