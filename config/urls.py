@@ -1,7 +1,3 @@
-from config.views import custom_404
-
-# Handler para página 404
-handler404 = "config.views.custom_404"
 """
 URL configuration for config project.
 
@@ -20,9 +16,14 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import include, path
+
+from apps.accounts.views import LogoutGetView, register
 from apps.portfolio.views import home
-from apps.accounts.views import register, LogoutGetView
+from config.views import account_settings, custom_404
+
+# Handler para página 404
+handler404 = custom_404
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -31,4 +32,5 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/register/", register, name="register"),
     path("manager/", include("apps.manager.urls")),
+    path("settings/", account_settings, name="settings"),
 ]

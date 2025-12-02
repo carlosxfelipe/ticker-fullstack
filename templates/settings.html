@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Configurações{% endblock %}
+
+{% block content %}
+  <section>
+    <h1>Configurações da Conta</h1>
+    <p>Gerencie abaixo as ações disponíveis para a sua conta.</p>
+  </section>
+
+  <section>
+    <h2>Alterar senha</h2>
+    <p>Redefina sua senha atual para manter sua conta protegida.</p>
+    <a href="{% url 'password_change' %}" role="button" class="contrast">
+      <i class="bi bi-key"></i> Atualizar senha
+    </a>
+  </section>
+
+  <section>
+    <h2>Encerrar conta</h2>
+    <p>Remova permanentemente sua conta e todos os ativos vinculados. Esta ação não pode ser desfeita.</p>
+    <button type="button" class="danger" aria-disabled="true" data-action="delete-account">
+      <i class="bi bi-person-dash"></i> Encerrar conta
+    </button>
+  </section>
+{% endblock %}
