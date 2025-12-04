@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Conta encerrada{% endblock %}
+
+{% block content %}
+<section>
+  <h1>Conta encerrada</h1>
+  <p>Sua conta foi removida com sucesso. Esperamos vê-lo novamente em breve.</p>
+  <footer>
+    <a href="{% url 'home' %}" role="button" class="contrast">
+      Voltar para a página inicial
+    </a>
+    <a href="{% url 'register' %}" role="button" class="secondary outline">
+      Criar uma nova conta
+    </a>
+  </footer>
+</section>
+{% endblock %}

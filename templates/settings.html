@@ -19,8 +19,56 @@
   <section>
     <h2>Encerrar conta</h2>
     <p>Remova permanentemente sua conta e todos os ativos vinculados. Esta ação não pode ser desfeita.</p>
-    <button type="button" class="danger" aria-disabled="true" data-action="delete-account">
+    <button
+      type="button"
+      class="danger"
+      data-target="delete-account-modal"
+      data-action="open"
+    >
       <i class="bi bi-person-dash"></i> Encerrar conta
     </button>
   </section>
+
+  <dialog id="delete-account-modal">
+    <article>
+      <header>
+        <button aria-label="Close" rel="prev" type="button" data-action="close"></button>
+        <h3>Encerrar conta</h3>
+      </header>
+      <p>Essa ação removerá sua conta e todos os dados associados. Deseja continuar?</p>
+
+      <footer style="display: flex; gap: .5rem; justify-content: flex-end; align-items: center;">
+        <form method="post" action="{% url 'delete_account' %}" style="margin: 0; display: flex; gap: .5rem; align-items: center;">
+          {% csrf_token %}
+          <button type="button" class="secondary outline" data-action="close" style="display: inline-flex; align-items: center; gap: 0.25rem;">
+            <i class="bi bi-x-lg"></i> Cancelar
+          </button>
+          <button type="submit" class="danger">
+            <i class="bi bi-person-dash"></i> Sim, encerrar conta
+          </button>
+        </form>
+      </footer>
+    </article>
+  </dialog>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const modal = document.getElementById("delete-account-modal");
+      if (!modal) return;
+
+      document.querySelectorAll('[data-target="delete-account-modal"][data-action="open"]').forEach((trigger) => {
+        trigger.addEventListener("click", () => modal.showModal());
+      });
+
+      modal.querySelectorAll('[data-action="close"]').forEach((closer) => {
+        closer.addEventListener("click", () => modal.close());
+      });
+
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          modal.close();
+        }
+      });
+    });
+  </script>
 {% endblock %}

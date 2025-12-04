@@ -20,7 +20,7 @@ from django.urls import include, path
 
 from apps.accounts.views import LogoutGetView, register
 from apps.portfolio.views import home
-from config.views import account_settings, custom_404
+from config.views import account_settings, custom_404, delete_account
 
 # Handler para página 404
 handler404 = custom_404
@@ -33,4 +33,5 @@ urlpatterns = [
     path("accounts/register/", register, name="register"),
     path("manager/", include("apps.manager.urls")),
     path("settings/", account_settings, name="settings"),
+    path("settings/delete/", delete_account, name="delete_account"),
 ]
